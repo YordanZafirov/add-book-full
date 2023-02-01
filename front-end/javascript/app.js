@@ -11,6 +11,10 @@ const showFormBtn = document.querySelector("#show-form");
 const form = document.querySelector('.form');
 const closeBtn = document.querySelector('#close-btn');
 
+window.onload = () =>{
+    getInfo();
+}
+
 showFormBtn.addEventListener('click', e=> {
     e.preventDefault()
     form.style.display = "block"
@@ -181,5 +185,3 @@ const showAlert = (message, type) =>{
 
     setTimeout(() => document.querySelector(`.${type}`).remove(), 3000)
 }
-
-getInfo();
