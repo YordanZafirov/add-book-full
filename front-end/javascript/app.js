@@ -65,31 +65,6 @@ addBtn.addEventListener('click', e =>{
         }
 })
 
-// const getInfo = async() =>{
-//     const res = await fetch('/get-data', {
-//         method: 'get'
-//     })
-//     const data = await res.json();
-
-//     for(let i in data){
-//         const row = document.createElement("tr");
-//         row.innerHTML = `
-//             <td>${data[i].first_name}</td>
-//             <td>${data[i].last_name}</td>
-//             <td>${data[i].email}</td>
-//             <td>${data[i].number}</td>
-//             <td>${data[i].address}</td>
-//             <td>${data[i].coordinates}</td>
-//         <td>
-//             <button type="button" class="change" onclick="updateItem('${data[i].first_name}', '${data[i].last_name}', '${data[i].email}', '${data[i].number}', '${data[i].address}', '${data[i].coordinates}')" >Обнови</button>
-//             <button type="button" class="delete" onclick="deleteItem('${data[i].id}')">Изтрий</button>
-//             <button type="button" class="show-map">Покажи на картата</button>
-//         </td>
-//         `;
-    
-//         dataList.appendChild(row);
-//     }
-// }
 const getInfo = () =>{
     fetch('/get-data')
 .then(res => {
