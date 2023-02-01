@@ -12,7 +12,7 @@ const form = document.querySelector('.form');
 const closeBtn = document.querySelector('#close-btn');
 
 window.onload = () =>{
-    getInfo();
+  getInfo();
 }
 
 showFormBtn.addEventListener('click', e=> {
@@ -65,8 +65,8 @@ addBtn.addEventListener('click', e =>{
         }
 })
 
-const getInfo = () =>{
-    fetch('/get-data')
+const getInfo = async () =>{
+   await fetch('/get-data')
 .then(res => {
 return res.json();
 })
