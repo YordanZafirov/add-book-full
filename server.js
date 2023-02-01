@@ -1,26 +1,29 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 const cors = require('cors');
 
 const dotenv = require('dotenv');
 dotenv.config()
 const PORT = process.env.PORT || 3000;
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-});
 
-db.connect(err =>{
-    if(err) throw err;
-    console.log('MySql Connected');
-})
+// const db = mysql.createConnection({
+//     host: process.env.DB_HOST,
+//     database: process.env.DB_NAME,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD
+// });
+
+// db.connect(err =>{
+//     if(err) throw err;
+//     console.log('MySql Connected');
+// })
 
 const app = express();
 let staticPath = path.join(__dirname, "front-end");
+const connectionRequest = require(path.join(__dirname, "connectionRequest.js"))
+db = connectionRequest();
 
 
 app.use(express.static(staticPath));
@@ -92,8 +95,15 @@ app.post('/save-data', (req, res) => {
 app.get('/get-data', (req, res)=>{
     const query = 'SELECT * FROM users';
     db.query(query, (err, data)=>{
-        if(err) throw err;
-        res.status(200).json(data)
+        if(err){
+            console.log(err);
+            db.destroy();
+        } else {
+            res.json(data);
+            db.destroy();
+        }
+        // if(err) throw err;
+        // res.status(200).json(data)
     });
 });
 
