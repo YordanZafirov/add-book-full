@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://kit.fontawesome.com/e75d39e4b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Адресна книга</title>
+</head>
+
+<body>
+
+    <!-- form -->
+    <div id="fullscreen-div"></div>
+    <form class="form" id="form">
+        <div class="form-content">
+            <div class="form-head">
+                <h3 id="form-title">Добави адрес</h3>
+                <button id="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="form-main">
+                <div class="form-row grid-row">
+                    <div class="form-col">
+                        <label>Име</label>
+                        <input type="text" name="first-name" id="first-name" class="form-control" required/>
+                    </div>
+                    <div class="form-col">
+                        <label>Фамилия</label>
+                        <input type="text" name="last-name" id="last-name" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-row grid-row">
+                    <div class="form-col">
+                        <label>Имейл</label>
+                        <input type="text" name="email" id="email" class="form-control" required/>
+                    </div>
+                    <div class="form-col">
+                        <label>Телефон</label>
+                        <input type="tel" name="number" id="number" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-row grid-row">
+                    <div class="form-col">
+                        <label>Адрес</label>
+                        <input type="text" name="address" id="address" class="form-control" required/>
+                    </div>
+                    <div class="form-col">
+                        <label>Координати</label>
+                        <input type="text" name="coordinates" id="coordinates" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-row" id="form-btns">
+                    <button type="submit" id="add">Запази</button>
+                    <button type="submit" id="update">Обнови</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- end of form -->
+
+    <!-- address table -->
+    <div class="address-book" id="address-book">
+        <div class="book-content">
+            <h2>Адресна книга</h2>
+            <div class="book-top">
+                <button class="btn" id="show-form">
+                    <div class="fas fa-plus">Добави адрес</div>
+                </button>
+            </div>
+            <div class="book-list" id="book-list">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Име</th>
+                            <th>Фамилия</th>
+                            <th>Имейл</th>
+                            <th>Телефон</th>
+                            <th>Адрес</th>
+                            <th>Координати</th>
+                            <th>Бутони</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data">
+                        <!-- <tr>
+                            <td>J</td>
+                            <td>LO</td>
+                            <td>dada@dada.da</td>
+                            <td>1234567890</td>
+                            <td>fdsjklfkjsdfkjl</td>
+                            <td>22, 22</td>
+                            <td>
+                                <button type="button" class="change">Обнови</button>
+                                <button type="button" class="delete">Изтрий</button>
+                                <button type="button" class="show-map">Покажи на картата</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>J</td>
+                            <td>LO</td>
+                            <td>dada@dada.da</td>
+                            <td>1234567890</td>
+                            <td>fdsjklfkjsdfkjl</td>
+                            <td>22, 22</td>
+                            <td>
+                                <button type="button" class="change">Обнови</button>
+                                <button type="button" class="delete">Изтрий</button>
+                                <button type="button" class="show-map">Покажи на картата</button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- end of table -->
+
+    <div id="map"></div>
+
+
+    <script src="javascript/app.js"></script>
+    <script src="javascript/openMap.js"></script>
+</body>
+</html>
