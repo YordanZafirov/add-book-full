@@ -68,7 +68,6 @@ const getInfo = async() =>{
     const data = await res.json();
 
     for(let i in data){
-        console.log(data[i]);
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${data[i].first_name}</td>
@@ -135,7 +134,6 @@ const updateItem = (first_name, last_name, emailUpd, numberUpd, addressUpd, coor
 
 
 const deleteItem = (id) =>{
-    console.log(id);
     fetch("/delete-data", {
         method: 'post',
         headers: new Headers({'Content-Type':'application/json'}),
