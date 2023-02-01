@@ -93,7 +93,7 @@ app.get('/get-data', (req, res)=>{
     const query = 'SELECT * FROM users';
     db.query(query, (err, data)=>{
         if(err) throw err;
-        res.json(data);
+        res.status(200).json(data)
     });
 });
 
