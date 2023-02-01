@@ -7,17 +7,18 @@ const dotenv = require('dotenv');
 dotenv.config()
 const PORT = process.env.PORT || 3000;
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
+    connectionLimit: 50,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD
 });
 
-db.connect(err =>{
-    if(err) throw err;
-    console.log('MySql Connected');
-})
+// db.connect(err =>{
+//     if(err) throw err;
+//     console.log('MySql Connected');
+// })
 
 const app = express();
 let staticPath = path.join(__dirname, "front-end");
@@ -91,11 +92,13 @@ app.post('/save-data', (req, res) => {
 
 app.get('/get-data', (req, res)=>{
     const query = 'SELECT * FROM users';
-    db.query(query, (err, data)=>{
-        if(err) throw err;
-        res.status(200).json(data);
-        db.destroy();
-    });
+    db.getConnection((err, connection)=>{
+        db.query(query, (err, data)=>{
+            if(err) throw err;
+            res.status(200).json(data);
+        });
+        connection.release();
+    })
 });
 
 app.post('/update-data', (req, res)=>{
